@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
-//make a schema, a blueprint of what fields a user is made of
-
+// has a name String and price Number
 const productSchema = new mongoose.Schema({
     name: String,
     price: Number
