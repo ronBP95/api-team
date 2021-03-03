@@ -11,7 +11,7 @@ router.get('/', async(req, res)=> {
 })
 
 router.get('/cheap', async(req,res)=>{
-  const prodData = await db.Product.find({price: {$lt: 75}})
+  const prodData = await db.Product.find({price: {$lt: 50}})
   res.json(prodData)
 })
 
