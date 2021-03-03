@@ -10,13 +10,19 @@ router.get('/', async(req, res)=> {
 
 })
 
-router.get('/:force_remote', async(req,res)=>{
-  const checkData = await db.Product.count()
-  if (checkData < 1 && req.params.force_remote === "n"){
-    //get data from API
-  }else{
-    //get data from DB
-  }
+// router.get('/:force_remote', async(req,res)=>{
+//   const checkData = await db.Product.count()
+//   if (checkData < 1 && req.params.force_remote === "n"){
+//     //get data from API
+//   }else{
+//     //get data from DB
+//   }
+// })
+
+router.get('/expensive', async (req, res) => {
+  const expData = await db.Product.find({price: {$gt: 100}})
+  console.log(expData)
+  res.json(expData)
 })
 
 router.get('/:id', async(req, res)=> {
@@ -24,6 +30,8 @@ router.get('/:id', async(req, res)=> {
   const product = await db.Product.findOne({_id: req.params.id})
   res.json(product)
 })
+
+
 
 router.post('/', async(req, res)=> {
   console.log(req.body.name)
@@ -49,5 +57,7 @@ router.delete('/', async(req,res)=>{
   console.log(delProduct)
   res.json(delProduct)
 })
+
+
 
 module.exports = router
