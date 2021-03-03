@@ -10,14 +10,11 @@ router.get('/', async(req, res)=> {
 
 })
 
-router.get('/:force_remote', async(req,res)=>{
-  const checkData = await db.Product.count()
-  if (checkData < 1 && req.params.force_remote === "n"){
-    //get data from API
-  }else{
-    //get data from DB
-  }
+router.get('/cheap', async(req,res)=>{
+  const prodData = await db.Product.find({price: {$lt: 75}})
+  res.json(prodData)
 })
+
 
 router.get('/:id', async(req, res)=> {
   // get one product by id
@@ -49,5 +46,7 @@ router.delete('/', async(req,res)=>{
   console.log(delProduct)
   res.json(delProduct)
 })
+
+
 
 module.exports = router
