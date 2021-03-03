@@ -10,9 +10,17 @@ router.get('/', async(req, res)=> {
 
 })
 
+
+router.get('/expensive', async (req, res) => {
+  const expData = await db.Product.find({price: {$gt: 100}})
+  console.log(expData)
+  res.json(expData)
+})
+
 router.get('/cheap', async(req,res)=>{
   const prodData = await db.Product.find({price: {$lt: 50}})
   res.json(prodData)
+
 })
 
 
@@ -21,6 +29,8 @@ router.get('/:id', async(req, res)=> {
   const product = await db.Product.findOne({_id: req.params.id})
   res.json(product)
 })
+
+
 
 router.post('/', async(req, res)=> {
   console.log(req.body.name)
