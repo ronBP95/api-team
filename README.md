@@ -48,3 +48,5 @@ So let's bring it in at the top. Let's also edit our routes so that we can use *
 
 Make a request via Postman at the correct route to show all products.
 
+![postman get](./assets/postman-get.png)
+
